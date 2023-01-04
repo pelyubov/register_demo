@@ -1,5 +1,5 @@
 # register_demo
-<pre>
+## Feature
 - [x] Register UI
-- [ ] Validate form
+- [x] Validate form
 - [ ] Request to server -> Success: send <b>"Hello world"<b>
