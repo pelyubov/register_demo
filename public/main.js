@@ -22,33 +22,40 @@ const checkEmail = (email) => {
 
 const checkPassword = (password) => {
     if (password == '' || password.length < 6 || password == null) {
-        alert('Username');
+        alert('Password');
         return false;
     }
 };
 
 const check = (username, email, password) => {
-    if (checkUsername(username)) {
+    if (
+        !checkUsername(username) &&
+        !checkEmail(email) &&
+        !checkPassword(password)
+    ) {
         return false;
-    }
-    if (checkEmail(email)) {
-        return false;
-    }
-    if (checkPassword(password)) {
-        return false;
+    } else {
+        return true;
     }
 };
 
-let isValid = check.default(
-    username.value.trim(),
-    email.value.trim(),
-    password.value
-);
-
 form.addEventListener('submit', (e) => {
     e.preventDefault();
+    let info = {
+        username: username.value.trim(),
+        email: email.value.trim(),
+        password: password.value
+    };
+    let isValid = check(info.username, info.email, info.password);
     if (isValid) {
-        const register = require('./register.js');
-        register.default();
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', '/addUser');
+        xhr.setRequestHeader('Content-type', 'application/json'); ///
+        xhr.send(JSON.stringify(info));
+        xhr.onload = () => {
+            // window.location.href = '#';
+            // alert(xhr.responseText(this));
+            alert('Request server success');
+        };
     }
 });
