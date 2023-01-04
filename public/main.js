@@ -2,10 +2,10 @@ const form = document.getElementById('form');
 const username = document.getElementById('username');
 const email = document.getElementById('email');
 const password = document.getElementById('password');
-
+const msg = document.getElementById('msg');
 const checkUsername = (name) => {
     if (name == '' || name == null) {
-        alert('Username');
+        msgBox('Username require.');
         return false;
     }
 };
@@ -15,28 +15,33 @@ const checkEmail = (email) => {
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     let isEmail = re.test(String(email).toLowerCase());
     if (isEmail == false) {
-        alert('Email');
+        msgBox('Invalid email.');
     }
     return isEmail;
 };
 
 const checkPassword = (password) => {
-    if (password == '' || password.length < 6 || password == null) {
-        alert('Password');
+    if (password == '' || password == null) {
+        msgBox('Password require.');
+        return false;
+    }
+    if (password.length < 6) {
+        msgBox('Password must have 6 characters or greater');
         return false;
     }
 };
 
 const check = (username, email, password) => {
-    if (
-        !checkUsername(username) &&
-        !checkEmail(email) &&
-        !checkPassword(password)
-    ) {
+    if (checkUsername(username) == false) {
         return false;
-    } else {
-        return true;
     }
+    if (checkEmail(email) == false) {
+        return false;
+    }
+    if (checkPassword(password) == false) {
+        return false;
+    }
+    return true;
 };
 
 form.addEventListener('submit', (e) => {
@@ -48,14 +53,21 @@ form.addEventListener('submit', (e) => {
     };
     let isValid = check(info.username, info.email, info.password);
     if (isValid) {
+        msg.style.display = 'none';
         const xhr = new XMLHttpRequest();
         xhr.open('POST', '/addUser');
         xhr.setRequestHeader('Content-type', 'application/json'); ///
         xhr.send(JSON.stringify(info));
         xhr.onload = () => {
-            // window.location.href = '#';
-            // alert(xhr.responseText(this));
+            // window.location.href = '/login';
+            const text = xhr.response;
+
             alert('Request server success');
         };
     }
 });
+
+const msgBox = (message) => {
+    msg.innerHTML = message;
+    msg.style.display = 'block';
+};

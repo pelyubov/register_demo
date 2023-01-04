@@ -3,6 +3,8 @@
     --theme: #eee;
 }
 * {
+    padding: 0;
+    margin: 0;
     transition: 0.3s ease;
     font-family: monospace;
 }
@@ -13,7 +15,7 @@ body {
     position: absolute;
     min-width: 50vw;
     min-height: 70vh;
-    margin-top: 13vh;
+    margin-top: 15vh;
     left: 50%;
     right: 50%;
     transform: translateX(-50%);
@@ -66,3 +68,24 @@ body {
     background-color: aqua;
 }
 } */
+
+#msg {
+    display: none;
+    position: absolute;
+    background-color: #aaa;
+    color: black;
+    border: 3px solid black;
+    border-radius: 10px;
+    font-size: 3rem;
+    top: 5vh;
+    padding: 8px 50px 5px 50px;
+    left: 50%;
+    transform: translate(-50%);
+    box-shadow: inset 0px 0px 5px black;
+    white-space: nowrap;
+}
+
+#msg:hover {
+    color: red;
+    background-color: #555;
+}
