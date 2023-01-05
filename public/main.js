@@ -61,8 +61,7 @@ form.addEventListener('submit', (e) => {
         xhr.onload = () => {
             // window.location.href = '/login';
             const text = xhr.response;
-
-            alert('Request server success');
+            msgBox(text);
         };
     }
 });

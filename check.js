@@ -1,6 +1,5 @@
 const check = (user) => {
     if (user.username == '' || user.username == null) {
-        console.log('Username');
         return { isValid: false, msg: 'From server: Invalid username.' };
     }
     const checkEmail =
@@ -8,7 +7,7 @@ const check = (user) => {
     if (
         user.email == '' ||
         user.email == null ||
-        checkEmail.test(String(user.email).toLowerCase())
+        checkEmail.test(String(user.email).toLowerCase()) == false
     ) {
         return { isValid: false, msg: 'From server: Invalid username.' };
     }

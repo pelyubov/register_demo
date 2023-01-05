@@ -25,15 +25,14 @@ app.post('/addUser', (req, res) => {
     let { isValid, msgCheck } = check(user);
     if (isValid == false) {
         res.json(msgCheck);
-    }
-
-    let { isHad, msg } = isHadThisUser(user);
-    console.log(msg);
-    if (isHad == false) {
-        push(user);
-        res.json(`Welcome, ${user.username}`);
     } else {
-        res.json(`${msg}`);
+        let { isHad, msg } = isHadThisUser(user);
+        if (isHad == false) {
+            push(user);
+            res.json(`Welcome, ${user.username}`);
+        } else {
+            res.json(msg);
+        }
     }
 });
 
