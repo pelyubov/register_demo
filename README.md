@@ -12,7 +12,7 @@ npm start
 -   [x] Register UI
 -   [x] Validate form
 -   [x] Request to server -> Success: send <b>"Hello world"<b>
--   [ ] Login
+-   [x] Login
 
 ## Add
 

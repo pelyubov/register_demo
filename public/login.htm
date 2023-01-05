@@ -5,13 +5,13 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="./stylesheets/style.css" />
-        <script type="module" src="./check.js" defer></script>
-        <script type="module" src="./register.js" defer></script>
-        <title>Register</title>
+        <script type="module" src="/check.js" defer></script>
+        <script type="module" src="/login.js" defer></script>
+        <title>Login</title>
     </head>
     <body>
         <div id="msg"></div>
-        <form id="form">
+        <form action="/acc" method="post" id="form">
             <input
                 type="text"
                 placeholder="Username"
@@ -26,12 +26,7 @@
                 class="input"
                 id="password"
             />
-            <input
-                type="submit"
-                value="Register Now"
-                class="input"
-                id="submit"
-            />
+            <input type="submit" value="Login" class="input" id="submit" />
         </form>
     </body>
 </html>
